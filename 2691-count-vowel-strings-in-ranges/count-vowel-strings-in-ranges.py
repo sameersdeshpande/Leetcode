@@ -6,7 +6,7 @@ class Solution:
         sum =0
         for i in range(len(words)):
             current_word = words[i]
-            if(current_word[0] in vowels and current_word[len(current_word)-1] in vowels):
+            if(current_word[0] in vowels and current_word[-1] in vowels):
                 sum+=1
             prefix_sum[i] = sum
         for i in range(len(queries)):
