@@ -9,53 +9,45 @@ class Solution:
     def boundaryOfBinaryTree(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
-        
+
         result = []
 
-        # Helper function to collect left boundary (excluding the leaves)
-        def collectLeftBoundary(node):
+        def collectLeft(node):
             if not node:
                 return
             if node.left:
                 result.append(node.val)
-                collectLeftBoundary(node.left)
-            elif node.right:  # if there's no left child but there's a right child
+                collectLeft(node.left)
+            elif node.right:
                 result.append(node.val)
-                collectLeftBoundary(node.right)
+                collectLeft(node.right)
 
-        # Helper function to collect leaves (we don't include root)
-        def collectLeaves(node):
+        def collectLeaf(node):
             if not node:
                 return
-            if not node.left and not node.right:  # it's a leaf node
+            if not node.left and not node.right:
                 result.append(node.val)
-            collectLeaves(node.left)
-            collectLeaves(node.right)
+            collectLeaf(node.left)
+            collectLeaf(node.right)
 
-        # Helper function to collect right boundary (reverse order)
-        def collectRightBoundary(node):
+        def collectRight(node):
             if not node:
                 return
             if node.right:
-                collectRightBoundary(node.right)
+                collectRight(node.right)
                 result.append(node.val)
-            elif node.left:  # if there's no right child but there's a left child
-                collectRightBoundary(node.left)
+            elif node.left:
+                collectRight(node.left)
                 result.append(node.val)
-
-        # Collect root
         result.append(root.val)
 
-        # Collect left boundary (excluding the root and leaves)
         if root.left:
-            collectLeftBoundary(root.left)
+            collectLeft(root.left)
+        
+        collectLeaf(root.left)
+        collectLeaf(root.right)
 
-        # Collect leaves (excluding the root)
-        collectLeaves(root.left)
-        collectLeaves(root.right)
-
-        # Collect right boundary (excluding the root and leaves, in reverse order)
         if root.right:
-            collectRightBoundary(root.right)
-
+            collectRight(root.right)
+            
         return result
