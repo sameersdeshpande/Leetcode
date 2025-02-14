@@ -6,10 +6,9 @@ class Solution:
 
 
         for i in range(n):
-            current_value=roman[s[i]]
         
-            if i<n-1 and current_value <roman[s[i+1]]:
-                value-=current_value
+            if i<n-1 and roman[s[i]] <roman[s[i+1]]:
+                value-=roman[s[i]]
             else:
-                value+=current_value
+                value+=roman[s[i]]
         return value
