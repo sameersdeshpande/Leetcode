@@ -5,11 +5,11 @@ class Solution:
 
         for token in tokens:
             if token in operators:
-                b = stack.pop()
+                b= stack.pop()
                 a = stack.pop()
 
                 if token == '+':
-                    result= a+b
+                    result = a+b
                 elif token == '-':
                     result = a-b
                 elif token == '*':
@@ -20,4 +20,5 @@ class Solution:
             else:
                 stack.append(int(token))
         return stack.pop()
-        
+
+                
