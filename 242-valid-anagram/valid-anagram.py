@@ -8,8 +8,15 @@ class Solution:
         freq_t={}
 
         for char in s:
-            freq_s[char] = freq_s.get(char,0)+1
+            if char in freq_s:
+                freq_s[char]+=1
+            else:
+                freq_s[char]=1
+                
         for char in t:
-            freq_t[char] = freq_t.get(char,0)+1
-        return freq_s == freq_t
+            if char in freq_t:
+                freq_t[char]+=1
+            else:
+                freq_t[char]=1
+        return True if freq_s ==freq_t else False
         
