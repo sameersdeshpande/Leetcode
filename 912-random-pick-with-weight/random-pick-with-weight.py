@@ -1,19 +1,21 @@
 class Solution:
 
     def __init__(self, w: List[int]):
-        self.sum=[]
-        sums = 0
+        self.sums = []
+        psum = 0
+
         for weight in w:
-            sums+= weight
-            self.sum.append(sums)
-        self.totalsum = sums
+            psum+=weight
+            self.sums.append(psum)
+        self.total = psum
         
 
     def pickIndex(self) -> int:
-        rand = self.totalsum*random.random()
-        for i,sums in enumerate(self.sum):
-            if rand <=sums:
+        ra = self.total * random.random()
+        for i , psum in enumerate(self.sums):
+            if ra < psum:
                 return i
+
         
 
         
